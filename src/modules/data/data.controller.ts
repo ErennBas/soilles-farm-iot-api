@@ -7,7 +7,6 @@ import { DataEntity } from './entities/data.entity';
 @ApiTags('Data')
 @ApiResponse({ status: 401, description: 'Kullanıcının oturumu yok ise dönecektir' })
 @ApiResponse({ status: 500, description: 'Sunucu Problemi' })
-@Controller()
 @Controller({ path: 'data', version: '1' })
 export class DataController {
   constructor(private readonly dataService: DataService) { }
@@ -40,7 +39,7 @@ export class DataController {
   @ApiResponse({ status: 200, description: 'Başarılı mesajı dönecektir' })
   @ApiResponse({ status: 400, description: 'Eksik veya hatalı bilgiler.' })
   @Get(':start/:end')
-  async findAll(@Param('start') start: string, end: string): Promise<DataEntity[]> {
+  async findAll(@Param('start') start: string, @Param('end') end: string): Promise<DataEntity[]> {
     return this.dataService.findAll(new Date(start), new Date(end));
   }
 }

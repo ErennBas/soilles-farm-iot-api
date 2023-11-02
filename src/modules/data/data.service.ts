@@ -1,16 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateDataDto } from './dto/create-data.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataEntity } from './entities/data.entity';
 import { Between, MoreThan, Repository } from 'typeorm';
+import { DataGateway } from './data.gateway';
 
 @Injectable()
 export class DataService {
+  
 
-  constructor(@InjectRepository(DataEntity) private dataRepository: Repository<DataEntity>) {}
+  constructor(@InjectRepository(DataEntity) private dataRepository: Repository<DataEntity>, private readonly dataGateway: DataGateway) {}
 
   async create(createDataDto: CreateDataDto): Promise<DataEntity> {
-    return this.dataRepository.save(createDataDto);
+    const data = await this.dataRepository.save(createDataDto);
+    if (!data) {
+      throw new HttpException({ message: 'Veri Eklenemedi' }, HttpStatus.BAD_REQUEST);
+    }
+    this.dataGateway.sendMessage(await this.dataRepository.findOne({ where: { id: data.id } }));
+    return data;
   }
 
   async findOne(): Promise<DataEntity> {

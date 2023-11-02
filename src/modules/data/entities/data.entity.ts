@@ -6,13 +6,13 @@ export class DataEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @Column({ type: 'decimal', precision: 2 })
+    @Column({ type: 'decimal', precision: 4, scale: 2 })
     moisture: number;
 
-    @Column({ type: 'decimal', precision: 2 })
+    @Column({ type: 'decimal', precision: 4, scale: 2 })
     waterTemperature: number;
 
-    @Column({ type: 'decimal', precision: 2 })
+    @Column({ type: 'decimal', precision: 4, scale: 2 })
     weatherTemperature: number;
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
