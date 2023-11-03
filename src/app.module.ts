@@ -8,6 +8,8 @@ import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataModule } from './modules/data/data.module';
 import { DataEntity } from './modules/data/entities/data.entity';
+import { DeviceModule } from './modules/device/device.module';
+import { DeviceEntity } from './modules/device/entities/device.entity';
 
 @Module({
   imports: [
@@ -58,12 +60,14 @@ import { DataEntity } from './modules/data/entities/data.entity';
           autoLoadEntities: true,
           synchronize: true,
           entities: [
-            DataEntity
+            DataEntity,
+            DeviceEntity
           ]
         }
       }
     }),
-    DataModule
+    DataModule,
+    DeviceModule
   ],
   controllers: [AppController],
   providers: [AppService],

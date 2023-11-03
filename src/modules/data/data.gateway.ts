@@ -3,7 +3,7 @@ import { SubscribeMessage, WebSocketServer, WebSocketGateway, OnGatewayConnectio
 import { Server, Socket } from 'socket.io';
 import { DataEntity } from './entities/data.entity';
 
-@WebSocketGateway({ cors: true })
+@WebSocketGateway()
 export class DataGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   constructor() {

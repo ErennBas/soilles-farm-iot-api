@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { DeviceEntity } from '../../device/entities/device.entity';
 
 @Entity('data')
 export class DataEntity {
@@ -17,4 +18,7 @@ export class DataEntity {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     createdDate: Date;
+
+    @ManyToOne(() => DeviceEntity, (user) => user.datas)
+    device: DeviceEntity
 }
