@@ -6,5 +6,6 @@ export enum EErrors {
     WATER_TEMPERATURE_REQUIRED = "Su sıcaklığı zorunludur",
     UUID_REQUIRED = "UUID zorunludur",
     MAC_ID_REQUIRED = "Mac Id zorunludur",
-    LOCAL_ID_REQUIRED = "Lokal ip zorunludur"
+    LOCAL_ID_REQUIRED = "Lokal ip zorunludur",
+    NO_DEVICE = "Cihaz Bulunamadı"
 }

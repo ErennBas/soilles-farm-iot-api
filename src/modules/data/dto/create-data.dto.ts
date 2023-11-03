@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { EErrors } from '../../../common/enums';
 
@@ -17,4 +17,9 @@ export class CreateDataDto {
     @IsNumber()
     @IsNotEmpty({ message: EErrors.MOISTURE_REQUIRED })
     moisture: number;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty({ message: EErrors.UUID_REQUIRED })
+    uuid: string;
 }
