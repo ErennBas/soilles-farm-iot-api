@@ -11,7 +11,7 @@ export class DeviceService {
   async create(createDeviceDto: CreateDeviceDto): Promise<DeviceEntity | UpdateResult> {
     const device = await this.deviceRepository.findOne({ where: { uuid: createDeviceDto.uuid } });
     if (device) {
-      return this.deviceRepository.update({ id: device.id }, { macId: createDeviceDto.macId, localIp: createDeviceDto.localId });
+      return this.deviceRepository.update({ id: device.id }, { macId: createDeviceDto.macId, localIp: createDeviceDto.localIp });
     }
     return this.deviceRepository.save(createDeviceDto);
   }
